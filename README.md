@@ -20,7 +20,7 @@ The next release of JUnit will execute `@Rule`s before `@Before` methods, which 
 
 Also, we now only register a `PersistenceContextBeanPostProcessor` _if_ an `EntityManager` has been `@Mock`ed. That is, it allows you to write a test for a class that contains a `@PersistenceContext` even if your test does not declare a `@Mock` `EntityManager`. Of course, it'll be up to you to provide the rest of the dependencies. For example,
 
-````
+```java
 public class WidgetServiceTest extends ActiveTest<WidgetService> {
 
   @Mock
@@ -34,7 +34,7 @@ public class WidgetServiceTest extends ActiveTest<WidgetService> {
   }
 
   ...
-````
+```
 
 Will now work properly, whereas before Spring would complain open seeing a `@PersistenceContext` annotation (in `WidgetService`) that an `EntityManager` or `EntityManagerFactory` was not registered.
 
@@ -45,16 +45,16 @@ JPA DAO classes can be written three ways:
 
 ### Using JPA `@PersistenceContext`
 It is possible to declare a Java EE 5 style DAO as follows:
-````
+```java
 public class WidgetDao {
 
   @PersistenceContext
   private EntityManager em;
 
   ...
-````
+```
 ### Using constructor injection
-````
+```java
 public class WidgetDao {
 
   private final EntityManager em;
@@ -64,17 +64,17 @@ public class WidgetDao {
   }
 
   ...
-````
+```
 ### Using Spring `JpaDaoSupport`-derived classes
-````
+```java
 public class WidgetDao extends JpaDaoSupport {
 
   ...
-````
+```
 
 ## Usage
 To use `dirty-mockito` in your Maven projects, simply add the following to the appropriate sections of your `pom.xml`:
-````
+```xml
 <project>
 
   <dependencies>
@@ -98,7 +98,7 @@ To use `dirty-mockito` in your Maven projects, simply add the following to the a
   </repositories>
 
 </project>
-````
+```
 
 ## Disclaimer
 
